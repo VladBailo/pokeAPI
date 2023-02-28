@@ -1,0 +1,29 @@
+body{
+    color: white;
+}
+
+.pokemon_list{
+    width: max-content;
+}
+
+.pokemon_item{
+    background-color: rgb(170, 91, 135);
+    padding: 10px;
+    margin: 4px;
+}
+
+.pokemon_box_info{
+    position: fixed;
+    right: 4px;
+    top: 4px;
+    background-color: rgb(170, 91, 135);
+    border-radius: 10px;
+}
+
+.pokemon_info{
+    margin: 17px;
+}
+
+.pokemon_image_container img{
+    width: 200px;
+}
