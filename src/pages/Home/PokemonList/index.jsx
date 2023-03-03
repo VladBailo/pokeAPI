@@ -1,51 +1,61 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Pagination from "./Pagination";
+import Pokemons from "./Pokemons";
 import styles from "./style.module.scss";
 
 const PokemonList = () => {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [pokemonList, setPokemonList] = useState([]); //all pokemons
+  const [selectedPokemon, setSelectedPokemon] = useState(null); //selected pokemon
+  const [loading, setLoading] = useState(false); //loading pages
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonsPerPage] = useState(10);
+
 
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=100").then((response) => {
-      setPokemonList(response.data.results);
-    });
+    const fetchPokemonData = async () => {
+      setLoading(true);
+      const response = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=100");
+      const results = response.data.results;
+
+      const pokemonPromises = results.map(async (result) => {
+        const pokemonResponse = await axios.get(result.url);
+        return pokemonResponse.data;
+      });
+
+      const pokemonList = await Promise.all(pokemonPromises);
+      setPokemonList(pokemonList);
+      setLoading(false);
+    };
+
+    fetchPokemonData();
   }, []);
 
   const handlePokemonSelect = (pokemon) => {
     setSelectedPokemon(pokemon);
   };
 
+  const lastPokemonIndex = currentPage * pokemonsPerPage;
+  const firstPokemonIndex = lastPokemonIndex - pokemonsPerPage;
+  const currentPokemon = pokemonList.slice(firstPokemonIndex, lastPokemonIndex);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
-    <div className={styles.pokemon_list}>
-      <div className={styles.pokemon_list_items}>
-        {pokemonList.map((pokemon, index) => (
-          <div
-            key={pokemon.name}
-            className={styles.pokemon_item}
-            onMouseEnter={() => handlePokemonSelect({ ...pokemon, id: index + 1 })}
-            onMouseLeave={() => setSelectedPokemon(null)}
-          >
-            {pokemon.name}
-          </div>
-        ))}
-      </div>
-      <div className={styles.pokemon_box_info}>
-        {selectedPokemon && (
-          <div className={styles.pokemon_info}>
-            <div className={styles.pokemon_image_container}>
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${selectedPokemon.id}.svg`}
-                alt={selectedPokemon.name}
-              />
-            </div>
-            <p>ID: {console.log(selectedPokemon)}</p>
-            <p>Name: {console.log(selectedPokemon.name)}</p>
-            <p>Height: {console.log(selectedPokemon.height)}</p>
-            <p>Weight: {console.log(selectedPokemon.weight)}</p>
-          </div>
-        )}
-      </div>
+    <div className={styles.PokemonList}>
+      <h2 className={styles.text_pokemons}>Pokemons</h2>
+      <Pokemons className={styles.Pokemon}
+        currentPokemon={currentPokemon}
+        loading={loading}
+        handlePokemonSelect={handlePokemonSelect}
+        setSelectedPokemon={setSelectedPokemon}
+        selectedPokemon={selectedPokemon}
+      />
+      <Pagination
+        pokemonsPerPage={pokemonsPerPage}
+        totalPokemons={pokemonList.length}
+        paginate={paginate}
+      />
     </div>
   );
 };

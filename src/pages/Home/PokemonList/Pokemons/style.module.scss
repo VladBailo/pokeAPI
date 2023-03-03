@@ -1,0 +1,47 @@
+body{
+    color: white;
+}
+
+.pokemon_list_items {
+    width: max-content;
+
+    .pokemon_item {
+        background-color: rgb(170, 91, 135); // задаем цвет фона
+        padding: 15px;
+        border-radius: 7px;
+        display: flex;
+
+        .text_list_items{
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.pokemon_item{
+    background-color: rgb(170, 91, 135);
+    padding: 10px;
+    margin: 4px;
+}
+
+.pokemon_box_info{
+    position: fixed;
+    top: 51px;
+    right: 4px;
+    background-color: rgb(170, 91, 135);
+    border-radius: 7px;
+}
+
+.pokemon_info{
+    margin: 17px;
+}
+
+.pokemon_image_container img{
+    width: 200px;
+}
+
+.boldText{
+    font-weight: bold;
+}
