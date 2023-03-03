@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import styles from "./style.module.scss";
 
-const Pagination = ({pokemonsPerPage, totalPokemons, paginate}) => {
+const Pagination = ({pokemonsPerPage, totalPokemons, currentPage, loading, paginate, prevPage, nextPage}) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalPokemons / pokemonsPerPage); i++) {
@@ -9,19 +9,46 @@ const Pagination = ({pokemonsPerPage, totalPokemons, paginate}) => {
     }
 
     return (
-      <div>
-        <ul className={styles.pagination}>
+        <div className={styles.pagination}>
+            <div>
+                {!loading && (                    
+                    <div
+                        className={`${styles.btn_prev} ${styles.btn}`}
+                        onClick={currentPage > 1 ? prevPage : null}
+                    >
+                            <div className={styles.page_link}>
+                                prev
+                            </div>  
+                    </div>)
+                }
+            </div>
             {
                 pageNumbers.map(number => (
-                    <li className={styles.page_item} key={number}>
-                        <a href="!#" className={styles.page_link} onClick={() => paginate(number)}>
-                            <div>{number}</div>
-                        </a>
-                    </li>
+                    <div
+                        className={styles.page_item}
+                        key={number}
+                        onClick={() => paginate(number)}
+                    >
+                        <div className={styles.page_link}>
+                            {number}
+                        </div>
+                    </div>
                 ))
             }
-        </ul>
-      </div>
+            <div>
+                {!loading && (                    
+                    <div
+                        className={`${styles.btn_next} ${styles.btn}`}
+                        onClick={currentPage < Math.ceil(totalPokemons / pokemonsPerPage) ? nextPage : null}
+                    >
+                            <div className={styles.page_link}>
+                                next
+                            </div>  
+                    </div>)
+                }
+            </div>
+        </div>
+        
     );
 }
   

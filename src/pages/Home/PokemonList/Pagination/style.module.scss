@@ -1,15 +1,25 @@
 .pagination{
+    color: black;
     display: flex;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
 }
 
-.page_link div{
-    width: 40px;
+.page_item, .btn{
+    :hover{
+        background-color: rgb(240, 240, 240);
+    }
+}
+
+.page_link, .btn{
+    cursor: pointer;
     height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+// .page_link div{
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }

@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 
 const Pokemons = ({currentPokemon, loading, handlePokemonSelect, setSelectedPokemon, selectedPokemon}) => {
   if (loading) {
-    return <h2>Loading...</h2>
+    return <h2 className={styles.loading}>Loading...</h2>
   }
 
   return (

@@ -11,7 +11,6 @@ const PokemonList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(10);
 
-
   useEffect(() => {
     const fetchPokemonData = async () => {
       setLoading(true);
@@ -40,6 +39,8 @@ const PokemonList = () => {
   const currentPokemon = pokemonList.slice(firstPokemonIndex, lastPokemonIndex);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+  const prevPage = () => setCurrentPage(prev => prev - 1);
+  const nextPage = () => setCurrentPage(prev => prev + 1);
 
   return (
     <div className={styles.PokemonList}>
@@ -54,7 +55,11 @@ const PokemonList = () => {
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
         totalPokemons={pokemonList.length}
+        currentPage={currentPage}
+        loading={loading}
         paginate={paginate}
+        prevPage={prevPage}
+        nextPage={nextPage}
       />
     </div>
   );
