@@ -1,19 +1,20 @@
-body{
-    color: white;
-}
-
-.loading{
-    color: rgb(170, 91, 135);
+.pokemon_list{
+    display: flex;
 }
 
 .pokemon_list_items {
+    color: white;
+    margin-top: 47px;
     width: max-content;
 
     .pokemon_item {
-        background-color: rgb(170, 91, 135); // задаем цвет фона
-        padding: 15px;
-        border-radius: 7px;
         display: flex;
+        background-color: rgb(170, 91, 135); // задаем цвет фона
+        border-radius: 7px;
+        padding: 15px;
+        margin: 4px;
+        text-decoration: none;
+        color: white;
 
         .text_list_items{
             font-weight: bold;
@@ -21,25 +22,24 @@ body{
             align-items: center;
             justify-content: center;
         }
+
+        .img_list_items img{
+            height: 17px;
+        }
     }
 }
 
-.pokemon_item{
-    background-color: rgb(170, 91, 135);
-    padding: 10px;
-    margin: 4px;
-}
-
 .pokemon_box_info{
+    color: white;
     position: fixed;
-    top: 51px;
+    top: 47px;
     right: 4px;
-    background-color: rgb(170, 91, 135);
-    border-radius: 7px;
 }
 
 .pokemon_info{
-    margin: 17px;
+    border-radius: 7px;
+    background-color: rgb(170, 91, 135);
+    margin: 4px;
 }
 
 .pokemon_image_container img{

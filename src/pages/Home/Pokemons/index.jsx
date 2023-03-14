@@ -1,17 +1,15 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from "./style.module.scss";
 
-const Pokemons = ({currentPokemon, loading, handlePokemonSelect, setSelectedPokemon, selectedPokemon}) => {
-  if (loading) {
-    return <h2 className={styles.loading}>Loading...</h2>
-  }
-
+const Pokemons = ({currentPokemon, handlePokemonSelect, setSelectedPokemon, selectedPokemon}) => {
   return (
     <div className={styles.pokemon_list}>
       <div className={styles.pokemon_list_items}>
         {currentPokemon.map((pokemon, index) => (
-          <div
+          <Link
             key={pokemon.name}
+            to={`/About/pokemon/${pokemon.id}`}
             className={styles.pokemon_item}
             onMouseEnter={() => handlePokemonSelect({ ...pokemon, index})}
             onMouseLeave={() => setSelectedPokemon(null)}
@@ -19,7 +17,13 @@ const Pokemons = ({currentPokemon, loading, handlePokemonSelect, setSelectedPoke
             <div className={styles.text_list_items}>
                 {pokemon.name.toUpperCase()}
             </div>
-          </div>
+            <div className={styles.img_list_items}>
+              <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
+                  alt={pokemon.name}
+              />
+            </div>
+          </Link>
         ))}
       </div>
       <div className={styles.pokemon_box_info}>
