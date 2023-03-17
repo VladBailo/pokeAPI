@@ -3,13 +3,15 @@
     height: 47px;
     width: 100%;
     background-color: white;
+    display: flex;
+    align-items: center;
+    .text_pokemons{
+        color: rgb(170, 91, 135);
+        font-weight: bold;
+        margin: 10px;
+    }
 }
 
-.text_pokemons{
-    color: rgb(170, 91, 135);
-    font-weight: bold;
-    margin: 10px;
-}
 
 .loading{
     position: absolute;

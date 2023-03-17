@@ -9,9 +9,11 @@
 
     .pokemon_item {
         display: flex;
-        background-color: rgb(170, 91, 135); // задаем цвет фона
+        justify-content: space-between;
+        min-width: 210px;
+        background-color: rgb(170, 91, 135);
         border-radius: 7px;
-        padding: 15px;
+        padding: 10px;
         margin: 4px;
         text-decoration: none;
         color: white;
@@ -24,7 +26,7 @@
         }
 
         .img_list_items img{
-            height: 17px;
+            height: 32px;
         }
     }
 }
@@ -34,18 +36,62 @@
     position: fixed;
     top: 47px;
     right: 4px;
+    
+    .pokemon_info{
+        border-radius: 7px;
+        border: 1px solid rgb(126, 56, 93);
+        background-color: rgb(170, 91, 135);
+        min-width: 350px;
+        margin: 4px;
+        .idAndNameAndImg{
+            border-bottom: 1px solid rgb(126, 56, 93);
+            padding: 15px;
+            .idAndName{
+                display: flex;
+                justify-content: space-between;
+            }
+            .pokemon_image_container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 5px;
+                img{
+                    width: 250px;
+                }
+            }
+        }
+        .pokemon_info_item{
+            display: flex;
+            justify-content: space-between;
+            height: max-content;
+            padding: 5px;
+            border-bottom: 1px solid rgb(126, 56, 93);
+            .item_title{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+            }
+            .item_datas{
+                display: flex;
+                .item_data{
+                    background-color: rgb(126, 56, 93);
+                    border-radius: 5px;
+                    padding: 3px;
+                    margin-left: 5px;
+                    height: max-content;
+                }
+            }
+            .item_data{
+                background-color: rgb(126, 56, 93);
+                border-radius: 5px;
+                padding: 3px;
+                height: max-content;
+            }
+        }
+        :last-child{
+            border-bottom: none;
+        }
+    }
 }
 
-.pokemon_info{
-    border-radius: 7px;
-    background-color: rgb(170, 91, 135);
-    margin: 4px;
-}
-
-.pokemon_image_container img{
-    width: 200px;
-}
-
-.boldText{
-    font-weight: bold;
-}

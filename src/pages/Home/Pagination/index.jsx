@@ -30,7 +30,7 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, currentPage, paginate, pre
 
   return (
     <div className={styles.pagination}>
-      <div className={`${styles.btn_prev} ${styles.btn}`} onClick={handlePrevClick}>prev</div>
+      <div className={`${styles.btn_prev} ${styles.btn}`} onClick={handlePrevClick}>&#8249;</div>
       {pageNumbers.map((number) => (
         <div
           className={`${styles.page_item} ${selectedPage === number ? styles.selected_page : ""}`}
@@ -40,7 +40,7 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, currentPage, paginate, pre
           {number}
         </div>
       ))}
-      <div className={`${styles.btn_next} ${styles.btn}`} onClick={handleNextClick}>next</div>
+      <div className={`${styles.btn_next} ${styles.btn}`} onClick={handleNextClick}>&#8250;</div>
     </div>
   );
 };

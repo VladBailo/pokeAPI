@@ -9,11 +9,11 @@ const Home = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null); //selected pokemon
   const [loading, setLoading] = useState(true); //loading pages
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(10);
+  const [pokemonsPerPage] = useState(9);
 
   useEffect(() => {
     const fetchPokemonData = async () => {
-      const response = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=100");
+      const response = await axios.get("https://pokeapi.co/api/v2/pokemon/?limit=108");
       const results = response.data.results;
 
       const pokemonPromises = results.map(async (result) => {

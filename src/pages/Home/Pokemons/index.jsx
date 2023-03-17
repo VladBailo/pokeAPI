@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import uniqid from 'uniqid';
 import styles from "./style.module.scss";
 
 const Pokemons = ({currentPokemon, handlePokemonSelect, setSelectedPokemon, selectedPokemon}) => {
@@ -29,16 +30,46 @@ const Pokemons = ({currentPokemon, handlePokemonSelect, setSelectedPokemon, sele
       <div className={styles.pokemon_box_info}>
         {selectedPokemon && (
           <div className={styles.pokemon_info}>
-            <div className={styles.pokemon_image_container}>
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${selectedPokemon.id}.svg`}
-                alt={selectedPokemon.name}
-              />
+            <div className={styles.idAndNameAndImg}>
+              <div className={styles.idAndName}>
+                <div className={styles.id}>#{selectedPokemon.id}</div>
+                <div className={styles.name}>{selectedPokemon.name.toUpperCase()}</div>
+              </div>
+              <div className={styles.pokemon_image_container}>
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${selectedPokemon.id}.svg`}
+                  alt={selectedPokemon.name}
+                />
+              </div>
             </div>
-            <p>ID: <span className={styles.boldText}>{selectedPokemon.id}</span></p>
-            <p>Name: <span className={styles.boldText}>{selectedPokemon.name.toUpperCase()}</span></p>
-            <p>Height: <span className={styles.boldText}>{selectedPokemon.height / 10} m</span></p>
-            <p>Weight: <span className={styles.boldText}>{selectedPokemon.weight / 10} kg</span></p>
+            <div className={styles.pokemon_info_item}>
+              <div className={styles.item_title}>
+                Type
+              </div>
+              <div className={styles.item_datas}>
+                {selectedPokemon.types?.map((type) => (
+                  <div key={uniqid('type-')} className={styles.item_data}>
+                    {type.type.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.pokemon_info_item}>
+              <div className={styles.item_title}>
+                Height
+              </div>
+              <div className={styles.item_data}>
+                {selectedPokemon.height / 10} m
+              </div>
+            </div>
+            <div className={styles.pokemon_info_item}>
+              <div className={styles.item_title}>
+                Weight
+              </div>
+              <div className={styles.item_data}>
+                {selectedPokemon.weight / 10} kg
+              </div>
+            </div>
           </div>
         )}
       </div>
